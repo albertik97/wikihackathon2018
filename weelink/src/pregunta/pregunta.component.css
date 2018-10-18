@@ -7,6 +7,11 @@
 	margin-right: 5%;
 	margin-bottom: 4px;
 }
+.pregunta:hover{
+	
+	transition: margin-left 3% 1s;
+	transition: margin-right 3% 1s;
+}
 
 h3{
 	font-size: 2em;
@@ -15,4 +20,9 @@ h4{
 	text-align: center;
 	margin:0 auto;
 	font-size: 1.5em;
+}
+
+img{
+	margin:10px auto;
+	display:block;
 }
