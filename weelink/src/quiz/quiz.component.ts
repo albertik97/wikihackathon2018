@@ -1,26 +1,24 @@
 import {Component} from '@angular/core';
+import {LocationService} from '../services/location.sercive';
 
 @Component({
 	selector:'quiz',
 	templateUrl:'./quiz.component.html',
+	styleUrls:['./quiz.component.css']
 	
 })
 
 export class QuizComponent{
 	public titulo = "quiz";
 	public categorias = [
-		"MonumentosUbi",
-		"PoblacionPueblo",
-		"FamososProfesion",
-		"FamososNacimiento"
+		"¿En que lugar se encuentra este monumento ",
+		"¿Cuantos habitantes tiene",
+		"¿Cúal es la profesión de",
+		"¿Dónde nacio"
 	];
 	public categoriaSelected;
-
-
-
-	constructor(
-		
-		){}
+	public ubicacion_actual;
+	constructor(){}
 	ngOnInit(){
 
 		console.log("Se ha cargado quiz");

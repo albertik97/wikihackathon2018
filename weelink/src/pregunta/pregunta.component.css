@@ -1,0 +1,18 @@
+.pregunta{
+	padding-top: 10px;
+	padding-bottom: 10px; 
+	text-align: center;
+	border: 2px solid #90CAF9;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-bottom: 4px;
+}
+
+h3{
+	font-size: 2em;
+}
+h4{
+	text-align: center;
+	margin:0 auto;
+	font-size: 1.5em;
+}

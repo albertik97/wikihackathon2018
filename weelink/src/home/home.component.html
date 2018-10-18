@@ -1,9 +1,6 @@
-
-
-
 <h3>Tu localización actual es</h3>
 <div>
-	<h2 id="ubi" class="label-ubic"> Loading... 
+	<h2 id="ubi" class="label-ubic">{{ubicacion_actual}}
 	</h2>
 	<div class="changeUbi-container">
 		<button><i class="fas fa-exchange-alt changeUbi"></i></button>
@@ -12,7 +9,7 @@
 </div>
  
 <div class="content">
-	<button [routerLink]="['/quiz']">JUGAR</button>
+	<button [routerLink]="['/quiz']" (click)="pasarubicacion()">JUGAR</button>
 
 	 <div class="card">   
 	 	<div class="card-info">

@@ -7,6 +7,8 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from './app.component';
 import  { HomeComponent } from '../home/home.component';
 import  { QuizComponent } from '../quiz/quiz.component';
+import  { PreguntaComponent } from '../pregunta/pregunta.component';
+
 
 
 
@@ -14,7 +16,8 @@ import  { QuizComponent } from '../quiz/quiz.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    QuizComponent
+    QuizComponent,
+    PreguntaComponent
   ],
   imports: [
     BrowserModule,
