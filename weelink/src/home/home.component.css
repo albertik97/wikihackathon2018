@@ -1,0 +1,101 @@
+*{
+  box-sizing:border-box;
+  font-family: 'Roboto', 'sans-serif';
+  outline:none;
+}
+
+
+body{
+	
+	color: #424242;
+}
+
+header{
+	display: flex;
+	align-items: center;
+	height: 50px;
+	border-bottom: 1px solid #E0E0E0;
+	padding-bottom: 18px;
+
+}
+
+header img{
+	height: 40px;
+	width: 40px;
+	margin-right: 0.3em;
+	margin-top: 15px;
+	float: left;
+}
+
+h2{
+
+	font-weight: 100;
+
+}
+
+h1{ 
+	color: #82B1FF;
+	font-size: 24px;
+	font-weight: 1000;
+	margin-top: 34px;	
+}
+
+h3
+{ 
+	font-weight: 300;
+	text-align: center;
+}
+
+h2 i:hover{
+	color: #82B1FF;
+	cursor: pointer;
+	transition: color .5s;
+}
+
+h2 i{	
+	color: 424242;
+	border-radius: 2em;
+	padding: 0.1em 0.3em; 
+	font-size: 18px;
+}
+
+h3{
+	font-size: 13px;
+}
+
+#label-ubic{
+	color: #212121;
+	font-weight: bold;
+}
+
+.label-ubic{
+	flex-direction: row;
+	text-align: center;
+}
+
+.content{
+	text-align: center;
+}
+
+.content button{
+	background-color: #82B1FF; /* Green */
+    border: none;
+    color: #424242;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2em;
+    font-weight: bold;
+
+    transition: background-color .5s;
+	
+	/*border: 3px solid #424242;*/
+	
+}
+
+button:hover{
+	background: #2962FF;
+	cursor: pointer;
+}
