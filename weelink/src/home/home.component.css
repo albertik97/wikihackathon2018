@@ -6,11 +6,12 @@
 
 
 body{
-	
+	margin: 0;
 	color: #424242;
 }
 
 header{
+	margin: 0 1em;
 	display: flex;
 	align-items: center;
 	height: 50px;
@@ -49,6 +50,18 @@ h3
 .changeUbi-container
 {
 	text-align: center;
+}
+.changeUbi-container > button
+{
+	background-color: transparent;
+	border: none;
+
+}
+.changeUbi-container > button:hover
+{
+	color: #82B1FF;
+	cursor: pointer;
+	transition: color .5s;
 }
 
 .changeUbi:hover{
@@ -103,12 +116,24 @@ h3{
 	/*border: 3px solid #424242;*/
 }
 
+.card
+{
+	margin-top: 1em;
+	background-color: #E0E0E0;
+	color: #424242;
+	border: 1px solid #BDBDBD;
+	border-radius: .25em;
+}
+
 .card-info > h2
 {
-	text-decoration: underline;
+	text-transform: uppercase;
 } 
+.card-info > p
+{
+}
 
-button:hover{
+.content button:hover{
 	background: #2962FF;
 	cursor: pointer;
 }
