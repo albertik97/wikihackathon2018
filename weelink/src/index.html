@@ -32,8 +32,10 @@
 			      if (status === google.maps.GeocoderStatus.OK) {
 			        // si encontró algún resultado.
 			        if (results[1]) {
-			          
-			          document.getElementById("ubi").innerHTML=results[1].formatted_address;
+			          let ubi = results[1].formatted_address.split(",");
+			          let provincia=ubi[ubi.length-2].split(" ");
+			          let ubi2 = provincia[provincia.length-1] + ', '+ ubi[ubi.length-1]
+			          document.getElementById("ubi").innerHTML=ubi2;
 			        }else{
 			        	consol.log("error");
 			        }
