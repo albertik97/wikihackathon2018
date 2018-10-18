@@ -14,6 +14,6 @@ export class HomeComponent{
 		private _locationService: LocationService
 		){}
 	ngOnInit(){
-		this._locationService.geolocalizar();
+		//this._locationService.geolocalizar();
 	}
 }
