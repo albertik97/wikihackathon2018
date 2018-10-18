@@ -46,13 +46,20 @@ h3
 	text-align: center;
 }
 
-h2 i:hover{
+.changeUbi-container
+{
+	text-align: center;
+}
+
+.changeUbi:hover{
 	color: #82B1FF;
 	cursor: pointer;
 	transition: color .5s;
 }
 
-h2 i{	
+.changeUbi{
+	display: block;
+	background-color: none;	
 	color: 424242;
 	border-radius: 2em;
 	padding: 0.1em 0.3em; 
