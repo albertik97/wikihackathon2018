@@ -34,11 +34,15 @@ h2{
 
 }
 
-h1{ 
+header h1{ 
 	color: #82B1FF;
 	font-size: 24px;
 	font-weight: 1000;
 	margin-top: 34px;	
+}
+
+h2{
+	font-size: 20px;
 }
 
 h3
@@ -131,6 +135,7 @@ h3{
 } 
 .card-info > p
 {
+	font-size: 14px;
 }
 
 .content button:hover{
