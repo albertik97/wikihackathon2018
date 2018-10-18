@@ -15,4 +15,36 @@
 <body>
   <app-root>Loading...</app-root>
 </body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBudtjCJw9-xIFH4us6mZ9K-9ZXnGOwUIw"></script>
+
+<script  type="text/javascript">
+
+	navigator.geolocation.getCurrentPosition(
+
+	function mostrarLoc(geo){     
+
+		var latitud=geo.coords.latitude;
+		var longitud=geo.coords.longitude;
+		var geocoder = new google.maps.Geocoder;
+		var myLatlng = new google.maps.LatLng(parseFloat(latitud),parseFloat(longitud));
+			geocoder.geocode({'location': myLatlng }, function(results,status) {
+		      // si la solicitud fue exitosa
+			      if (status === google.maps.GeocoderStatus.OK) {
+			        // si encontró algún resultado.
+			        if (results[1]) {
+			          
+			          document.getElementById("ubi").innerHTML=results[1].formatted_address;
+			        }else{
+			        	consol.log("error");
+			        }
+			      }
+		  });
+		}
+		  ,function mostrarError(error){                
+			console.log(error);
+		});
+		
+</script>
+</html>
+
 </html>

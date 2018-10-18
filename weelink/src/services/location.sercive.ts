@@ -1,31 +1,35 @@
 import {Injectable} from '@angular/core';
+import {Http, Response, Headers} from '@angular/http';
+import  'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
+
 
 @Injectable()
 
-/*var options = {
-		  enableHighAccuracy: true,
-		  timeout: 6000,
-		  maximumAge: 0
-		};
 
 export class LocationService{
-		public position;
+	public latitudt:number;
+	public longitudt:number;
+	public url:string;
+	private _http:Http;
 
-		
+	/*geolocalizar() {
+		navigator.geolocation.getCurrentPosition(
 
-		localizar(){
-			navigator.geolocation.getCurrentPosition(this.success, this.error, options );
-	    }
-		success(position) {
-		  var coordenadas = position.coords;
+		function mostrarLoc(geo){     
 
-		  console.log('Tu posición actual es:');
-		  console.log('Latitud : ' + coordenadas.latitude);
-		  console.log('Longitud: ' + coordenadas.longitude);
-		  console.log('Más o menos ' + coordenadas.accuracy + ' metros.');
-		};
+		var latitud=geo.coords.latitude;
+		var longitud=geo.coords.longitude;
 
-		error(error) {
-		  console.warn('ERROR(' + error.code + '): ' + error.message);
-		};
-}*/
+		console.log(latitud);
+		console.log(" ");
+		console.log(longitud);
+
+
+		},function mostrarError(error){                
+			console.log(error);
+		});
+	}*/
+
+
+}
