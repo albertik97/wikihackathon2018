@@ -9,10 +9,11 @@ import {Component} from '@angular/core';
 export class QuizComponent{
 	public titulo = "quiz";
 
+
 	constructor(
 		
 		){}
 	ngOnInit(){
-		
+		console.log("Se ha cargado quiz");	
 	}
 }

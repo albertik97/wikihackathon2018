@@ -1,9 +1,9 @@
-import { moduleWithProviders } from '@angular/core';
-import { Ŕoutes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 
-import { HomeComponent } from './home/home.component';
-import { QuizComponent } from './quiz/quiz.component';
+import { HomeComponent } from '../home/home.component';
+import { QuizComponent } from '../quiz/quiz.component';
 
 const appRoutes: Routes = [
 	{path: '', component: HomeComponent},
