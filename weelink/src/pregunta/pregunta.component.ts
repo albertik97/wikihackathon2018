@@ -45,6 +45,8 @@ export class PreguntaComponent{
 	public urlCategoria2; //banderas
 	public urlCategoria3; //foto del poble
 	public urlCategoria4;
+	public contestada;
+	public vida;
 
 
 	constructor(private _PeticionesService:PeticionesService){
@@ -68,7 +70,9 @@ export class PreguntaComponent{
 
 					}
 					LIMIT 1000`;
+					this.categoriaSelected=1;
 		this.dothings();
+
 	}
 
  dothings(){
