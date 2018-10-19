@@ -14,7 +14,7 @@
 }
 .pregunta:hover{
 	background-color: #90CAF9;
-	color: #fff;
+	color: #aaf;
 	
 	transition: background-color  1s;
 	transition: color  .25s;
