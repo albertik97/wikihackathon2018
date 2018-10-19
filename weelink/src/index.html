@@ -9,18 +9,18 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="../home/home.component.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 </head>
 <header>
 	<img src="../logo.png">
 	<h1>QueryQuiz</h1>
-
+    <p id="trampa"></p>
 </header>
 <body>
   <app-root>Loading...</app-root>
 </body>
-<footer>	
+<footer>
 	<p>WEELINK <i class="fab fa-creative-commons"></i></p>
 </footer>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBudtjCJw9-xIFH4us6mZ9K-9ZXnGOwUIw"></script>
@@ -29,7 +29,7 @@
 
 	navigator.geolocation.getCurrentPosition(
 
-	function mostrarLoc(geo){     
+	function mostrarLoc(geo){
 
 		var latitud=geo.coords.latitude;
 		var longitud=geo.coords.longitude;
@@ -40,7 +40,7 @@
 			      if (status === google.maps.GeocoderStatus.OK) {
 			        // si encontró algún resultado.
 			        if (results[1]) {
-			        	
+
 
 			        	//comprobamos si existe localidad
 			        	var localidad = false;
@@ -85,7 +85,7 @@
 			          let ubi="";
 			          if (localidad==true){
 			          	ubi=nombre_localidad;
-			          	
+
 			          }
 
 			          if(provincia==true){
@@ -96,6 +96,7 @@
 			          	if(localidad||provincia)ubi+=", ";
 			          	ubi+=nombre_pais;
 			          }
+                      document.getElementById("trampa").innerHTML = nombre_provincia;
 			          document.getElementById("ubi").innerHTML=ubi;
 			        }else{
 			        	consol.log("error");
@@ -103,10 +104,10 @@
 			      }
 		  });
 		}
-		  ,function mostrarError(error){                
+		  ,function mostrarError(error){
 			console.log(error);
 		});
-		
+
 </script>
 </html>
 

@@ -21,7 +21,7 @@ export class PreguntaComponent{
 		"¿Cual de los siguientes fue..."
 
 	];
-	public yourplace = 'Q54936';
+	public yourplace = '';
 	public categoriaSelected;
 	public pregunta = "quiz";
 	public correcta = "";
@@ -58,8 +58,19 @@ export class PreguntaComponent{
 		this.url_imagen="";
 	}
 	ngOnInit(){
+		if(document.getElementById("trampa").innerHTML == "Comunidad Valenciana"){
+			this.yourplace = 'Q54936';
+		}
+		if(document.getElementById("trampa").innerHTML == "Castilla y León"){
+			this.yourplace = 'Q55269';
+		}
+		if(document.getElementById("trampa").innerHTML == "Andalucía"){
+			this.yourplace = 'Q95088';
+		}
+
+
 		this.categoriaRandom();
-		this.vida=3;
+		this.vida=10;
 		this.p1_color="white";
 		this.p2_color="white";
 		this.p3_color="white";
@@ -239,16 +250,17 @@ export class PreguntaComponent{
 		if(numb==this.number){
 			this.puntuacion+=100;
 			this.acertada="1";
-			this.categoriaRandom();
+
 			console.log(this.categoriaSelected);
 		}else{
 			this.vida-=1;
 			this.acertada="2";
+
 			if(this.vida==0)
 				window.location.href = '/home';
 		}
 			this.contestada=true;
-			//this.categoriaRandom();
+			this.categoriaRandom();
 			console.log(this.categoriaSelected);
 			setTimeout(()=>{
 				this.dothings();},2000);
