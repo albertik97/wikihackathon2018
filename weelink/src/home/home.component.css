@@ -14,23 +14,22 @@ header{
 	margin: 0 1em;
 	display: flex;
 	align-items: center;
-	height: 50px;
+	justify-content: center;
+	height: 70px;
 	border-bottom: 1px solid #E0E0E0;
-	padding-bottom: 18px;
 
 }
 
 header img{
 	height: 40px;
 	width: 40px;
-	margin-right: 0.3em;
-	margin-top: 15px;
-	float: left;
+	margin-right: 0.5em;
 }
 
 h2{
 
 	font-weight: 100;
+	font-size: 20px;
 
 }
 
@@ -38,17 +37,14 @@ header h1{
 	color: #82B1FF;
 	font-size: 24px;
 	font-weight: 1000;
-	margin-top: 34px;	
 }
 
-h2{
-	font-size: 20px;
-}
 
 h3
 { 
 	font-weight: 300;
 	text-align: center;
+	font-size: 13px;
 }
 
 .changeUbi-container
@@ -83,9 +79,6 @@ h3
 	font-size: 18px;
 }
 
-h3{
-	font-size: 13px;
-}
 
 #label-ubic{
 	color: #212121;
