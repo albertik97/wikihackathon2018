@@ -4,10 +4,32 @@
   outline:none;
 }
 
+footer{
+	border-top: 2px solid #E0E0E0;
+	color: #fafafa;
+	background-color: #82B1FF;
+	text-align: center;
+	font-weight: 100;
+	margin: 0 auto;
+	height: 50px;
+	bottom: 0px;
+	margin-top: 1.75em;
+
+}
+
+footer i{
+	font-size: 20px;
+	color: #fafafa;
+}
+
+footer p{
+	margin-bottom: 0px;
+}
 
 body{
 	margin: 0;
 	color: #424242;
+	margin-bottom: 0px;
 }
 
 header{

@@ -26,6 +26,10 @@
 	margin-bottom: 20px;
 }
 
+.icono{
+	font-size: 35px;
+}
+
 span{
 	font-weight: bold;
 }
@@ -53,6 +57,7 @@ h2
 {
 	margin-top: .25em;
 	text-align: center;
+	font-weight: bold;
 }
 
 img
@@ -86,6 +91,11 @@ img
 	#div-todo{
 	margin-bottom: 10px;
 }
+
+.icono{
+	font-size: 50px;
+}
+
 
 
 }
