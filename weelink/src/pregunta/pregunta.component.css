@@ -14,15 +14,18 @@
 }
 .pregunta:hover{
 	background-color: #90CAF9;
-	color: #aaf;
+	color: black;
+	border: 2px solid black;	
 	
 	transition: background-color  1s;
 	transition: color  .25s;
-	
+	transition: border  .25s;
 }
 
 
-
+span{
+	font-weight: bold;
+}
 
 h3{
 	font-size: 1.5em;
@@ -38,9 +41,11 @@ h4{
 #container-punt
 {
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 }
+
+
 h2
 {
 	margin-top: .25em;

@@ -1,10 +1,15 @@
-<h2>{{categorias[categoriaSelected]}}</h2>
-<img src="{{url_imagen}}" width="300px">
-<div class="pregunta" (click)="comprobar(n1,1)"  [style.background]="p1_color">{{p1}}</div>
-<div class="pregunta" (click)="comprobar(n2,2)"  [style.background]="p2_color">{{p2}}</div>
-<div class="pregunta" (click)="comprobar(n3,3)"  [style.background]="p3_color">{{p3}}</div>
-<div class="pregunta" (click)="comprobar(n4,4)"  [style.background]="p4_color">{{p4}}</div>
+<div id="container-punt">    
+    <h3>Puntuación: &nbsp;<span>{{puntuacion}}</span></h3>  
+    <h3 id="span-vida">Vida:&nbsp; <span>{{vida}}</span></h3>   
+</div>
 
-<h3>Puntuación</h3>
-<h4>{{puntuacion}}</h4>
-Vida:{{vida}}
+<h2>{{categorias[categoriaSelected]}}</h2>
+<div id="div-todo">
+    <img src="{{url_imagen}}" width="300px">
+    <div id="div-preguntas">
+       <div class="pregunta" (click)="comprobar(n1,1)"  [style.background]="p1_color">{{p1}}</div>
+       <div class="pregunta" (click)="comprobar(n2,2)"  [style.background]="p2_color">{{p2}}</div>
+		<div class="pregunta" (click)="comprobar(n3,3)"  [style.background]="p3_color">{{p3}}</div>
+		<div class="pregunta" (click)="comprobar(n4,4)"  [style.background]="p4_color">{{p4}}</div>
+    </div>
+</div>

@@ -1,23 +1,29 @@
+
 <h3>Tu localización actual es</h3>
 <div>
-	<h2 id="ubi" class="label-ubic">{{ubicacion_actual}}
-	</h2>
-	<div class="changeUbi-container">
-		<button><i class="fas fa-exchange-alt changeUbi"></i></button>
-	</div>
-	
+    <h2 id="ubi" class="label-ubic">{{ubicacion_actual}}
+    </h2>    
+</div><div class="content">
+    <button [routerLink]="['/quiz']" (click)="pasarubicacion()">JUGAR</button>     <div class="card">
+         <div class="card-info">
+        <h2>¿Cómo jugar?</h2>
+        <div id="div-info">
+            <div class="card2">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Seleccionaremos tu localizaci&oacute;n.</p>
+            </div>
+            <div class="card2">
+                <i class="far fa-question-circle"></i>
+                <p>Una vez seleccionada, tendr&aacute;s que responder a las preguntas que se te propongan.</p>
+            </div>
+            <div class="card2">
+                <i class="far fa-grin-beam"></i>
+                <p>¡Diviértete aprendiendo!</p>
+            </div>    
+        </div>
+        
+    </div>
+     </div>
 </div>
- 
-<div class="content">
-	<button [routerLink]="['/quiz']" (click)="pasarubicacion()">JUGAR</button>
-
-	 <div class="card">   
-	 	<div class="card-info">
-		<h2>¿Cómo jugar?</h2>
-		<p>Seleccionaremos tu localizaci&oacute;n. Podr&aacute;s cambiarla en el boton cambiar. Una vez seleccionada, tendr&aacute;s que responder a las preguntas que se te propongan.</p>
-	</div>
-	 </div>
-</div>
-
 
 

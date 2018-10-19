@@ -178,32 +178,32 @@ export class PreguntaComponent{
 	comprobar2(){
 
 		if(this.n1==this.number){
-			this.p1_color='green';
+			this.p1_color='#00C853';
 			
 		}else{
-			this.p1_color='red';
+			this.p1_color='#FF8A80';
 			console.log(this.p1_color);
 		}
 
 		if(this.n2==this.number){
-			this.p2_color='green';
+			this.p2_color='#00C853';
 			
 		}else{
-			this.p2_color='red';
+			this.p2_color='#FF8A80';
 		}
 
 		if(this.n3==this.number){
-			this.p3_color='green';
+			this.p3_color='#00C853';
 			
 		}else{
-			this.p3_color='red';
+			this.p3_color='#FF8A80';
 		}
 
 		if(this.n4==this.number){
-			this.p4_color='green';
+			this.p4_color='#00C853';
 			
 		}else{
-			this.p4_color='red';
+			this.p4_color='#FF8A80';
 		}
 			
 	}
