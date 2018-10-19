@@ -7,10 +7,20 @@ import {PeticionesService} from '../services/peticiones.service';
 	templateUrl:'./pregunta.component.html',
 	styleUrls:['./pregunta.component.css'],
 	providers: [PeticionesService]
-	
+
 })
 
 export class PreguntaComponent{
+	public categorias = [
+		"¿En que lugar se encuentra este monumento?",
+		"¿A qué municipio pertenece este escudo?",
+		"¿A qué municipio pertenece esta bandera?",
+		"¿Dónde está hecha esta foto?",
+		"¿Qué municipio se encuentra en este lugar?",
+		"¿Cuantos habitantes tiene..."
+
+	];
+	public categoriaSelected;
 	public pregunta = "quiz";
 	public correcta = "";
 	public acertada:string;
@@ -29,8 +39,13 @@ export class PreguntaComponent{
 	public n4;
 	public puntuacion;
 	public number;
-	public urlCategoria1; //monumentos
-	public vida;
+	public urlShow;
+	public urlCategoria0; //monumentos
+	public urlCategoria1; //escudos
+	public urlCategoria2; //banderas
+	public urlCategoria3; //foto del poble
+	public urlCategoria4;
+
 
 	constructor(private _PeticionesService:PeticionesService){
 		this.url_imagen="";
@@ -43,7 +58,7 @@ export class PreguntaComponent{
 		this.p4_color="white";
 		this.number=-1;
 		this.puntuacion=0;
-		this.acertada="0";//no contestada
+		this.contestada=false;
 		this.urlCategoria1=`SELECT DISTINCT ?mon ?monLabel ?esta_enLabel ?foto WHERE {
 					 ?mon wdt:P131* wd:Q54936.
 					 ?mon wdt:P31 wd:Q4989906.
@@ -53,7 +68,6 @@ export class PreguntaComponent{
 
 					}
 					LIMIT 1000`;
-
 		this.dothings();
 	}
 
@@ -62,10 +76,25 @@ export class PreguntaComponent{
 		this.p2_color="white";
 		this.p3_color="white";
 		this.p4_color="white";
+	if(this.categoriaSelected==0){
+		this.urlShow = this.urlCategoria0;
+	}
+	else if(this.categoriaSelected==1){
+		this.urlShow = this.urlCategoria1;
+	}
+	else if(this.categoriaSelected==2){
+		this.urlShow = this.urlCategoria2;
+	}
+	else if(this.categoriaSelected==3){
+		this.urlShow = this.urlCategoria3;
+	}
+	else if(this.categoriaSelected==4){
+		this.urlShow = this.urlCategoria4;
+	}
 
- 	this._PeticionesService.getTipo1(this.urlCategoria1).subscribe(
+ 	this._PeticionesService.getTipo1(this.urlShow).subscribe(
             result => {
-                 
+
                 if(result.code != 200){
                     
                     var sitios = [];
@@ -92,13 +121,13 @@ export class PreguntaComponent{
                 }else{
                    
                 }
- 
+
             },
             error => {
                 console.log(<any>error);
             }
         );
-      
+
 	}
 
 	shuffle(array) {
@@ -131,6 +160,9 @@ export class PreguntaComponent{
 			if(this.vida==0)
 				window.location.href = '/home';
 		}
+			this.contestada=true;
+			this.categoriaRandom();
+			console.log(this.categoriaSelected);
 			this.dothings();
 			this.number=-1;
 	}
@@ -178,6 +210,13 @@ export class PreguntaComponent{
 			
 	}
 
+	getRandomInt(min, max) {
+    	return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
 
+	categoriaRandom()
+	{
+		this.categoriaSelected = this.getRandomInt(0, 4);
+	}
 
 }
