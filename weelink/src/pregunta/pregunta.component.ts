@@ -6,10 +6,20 @@ import {PeticionesService} from '../services/peticiones.service';
 	templateUrl:'./pregunta.component.html',
 	styleUrls:['./pregunta.component.css'],
 	providers: [PeticionesService]
-	
+
 })
 
 export class PreguntaComponent{
+	public categorias = [
+		"¿En que lugar se encuentra este monumento?",
+		"¿A qué municipio pertenece este escudo?",
+		"¿A qué municipio pertenece esta bandera?",
+		"¿Dónde está hecha esta foto?",
+		"¿Qué municipio se encuentra en este lugar?",
+		"¿Cuantos habitantes tiene..."
+
+	];
+	public categoriaSelected;
 	public pregunta = "quiz";
 	public correcta = "";
 	public contestada:boolean;
@@ -24,17 +34,23 @@ export class PreguntaComponent{
 	public n4;
 	public puntuacion;
 	public number;
-	public urlCategoria1; //monumentos
+	public urlShow;
+	public urlCategoria0; //monumentos
+	public urlCategoria1; //escudos
+	public urlCategoria2; //banderas
+	public urlCategoria3; //foto del poble
+	public urlCategoria4;
+
 
 	constructor(private _PeticionesService:PeticionesService){
 		this.url_imagen="";
 	}
 	ngOnInit(){
-		
+		this.categoriaRandom();
 		this.number=-1;
 		this.puntuacion=0;
 		this.contestada=false;
-		this.urlCategoria1=`SELECT DISTINCT ?mon ?monLabel ?esta_enLabel ?foto WHERE {
+		this.urlCategoria0=`SELECT DISTINCT ?mon ?monLabel ?esta_enLabel ?foto WHERE {
 					 ?mon wdt:P131* wd:Q54936.
 					 ?mon wdt:P31 wd:Q4989906.
 					 SERVICE wikibase:label { bd:serviceParam wikibase:language "es,ca,en". }
@@ -43,14 +59,72 @@ export class PreguntaComponent{
 
 					}
 					LIMIT 1000`;
+		this.urlCategoria1=`
+			SELECT DISTINCT ?mon ?monLabel ?coordenadas ?foto WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "en, es, ca". }
+			?mon wdt:P131* wd:Q54936.
+			?mon wdt:P31 ?tipoDeNucleo.
+			FILTER(?tipoDeNucleo = wd:Q2074737 || ?tipoDeNucleo = wd:Q515)
+			OPTIONAL { ?mon wdt:P625 ?coordenadas. }
+			?mon wdt:P94 ?foto.
+			}
+			LIMIT 1000`;
+		this.urlCategoria2=`
+		SELECT DISTINCT ?mon ?monLabel ?coordenadas ?foto WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "en, es, ca". }
+			?mon wdt:P131* wd:Q54936.
+			?mon wdt:P31 ?tipoDeNucleo.
+			FILTER(?tipoDeNucleo = wd:Q2074737 || ?tipoDeNucleo = wd:Q515)
+			OPTIONAL { ?mon wdt:P625 ?coordenadas. }
+			?mon wdt:P41 ?foto.
+			}
+			LIMIT 1000
+		`;
+		this.urlCategoria3=`
+			SELECT DISTINCT ?mon ?monLabel ?coordenadas ?foto WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "en, es, ca". }
+			?mon wdt:P131* wd:Q54936.
+			?mon wdt:P31 ?tipoDeNucleo.
+			FILTER(?tipoDeNucleo = wd:Q2074737 || ?tipoDeNucleo = wd:Q515)
+			OPTIONAL { ?mon wdt:P625 ?coordenadas. }
+			?mon wdt:P18 ?foto.
+			}
+			LIMIT 1000
+		`;
+		this.urlCategoria4=`
+			SELECT DISTINCT ?mon ?monLabel ?coordenadas ?foto WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "en, es, ca". }
+			?mon wdt:P131* wd:Q54936.
+			?mon wdt:P31 ?tipoDeNucleo.
+			FILTER(?tipoDeNucleo = wd:Q2074737 || ?tipoDeNucleo = wd:Q515)
+			OPTIONAL { ?mon wdt:P625 ?coordenadas. }
+			?mon wdt:P242 ?foto.
+			}
+			LIMIT 1000
+		`;
 		this.dothings();
 	}
 
  dothings(){
+	if(this.categoriaSelected==0){
+		this.urlShow = this.urlCategoria0;
+	}
+	else if(this.categoriaSelected==1){
+		this.urlShow = this.urlCategoria1;
+	}
+	else if(this.categoriaSelected==2){
+		this.urlShow = this.urlCategoria2;
+	}
+	else if(this.categoriaSelected==3){
+		this.urlShow = this.urlCategoria3;
+	}
+	else if(this.categoriaSelected==4){
+		this.urlShow = this.urlCategoria4;
+	}
 
- 	this._PeticionesService.getTipo1(this.urlCategoria1).subscribe(
+ 	this._PeticionesService.getTipo1(this.urlShow).subscribe(
             result => {
-                 
+
                 if(result.code != 200){
                     console.log(result.results.bindings);
                     var sitios = [];
@@ -78,13 +152,13 @@ export class PreguntaComponent{
                 }else{
                     console.log(result.results.bindings);
                 }
- 
+
             },
             error => {
                 console.log(<any>error);
             }
         );
-      
+
 	}
 
 	shuffle(array) {
@@ -111,12 +185,23 @@ export class PreguntaComponent{
 		if(numb==this.number){
 			this.puntuacion+=100;
 			this.contestada=true;
+			this.categoriaRandom();
+			console.log(this.categoriaSelected);
 			this.dothings();
 			this.contestada=false;
 			this.number=-1;
 		}else{
 			this.puntuacion-=11;
 		}
+	}
+
+	getRandomInt(min, max) {
+    	return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	categoriaRandom()
+	{
+		this.categoriaSelected = this.getRandomInt(0, 4);
 	}
 
 }
