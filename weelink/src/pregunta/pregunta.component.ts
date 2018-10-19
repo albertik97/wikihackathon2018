@@ -24,20 +24,31 @@ export class PreguntaComponent{
 	public n4;
 	public puntuacion;
 	public number;
+	public urlCategoria1; //monumentos
 
 	constructor(private _PeticionesService:PeticionesService){
 		this.url_imagen="";
 	}
 	ngOnInit(){
-		this.dothings();
+		
 		this.number=-1;
 		this.puntuacion=0;
 		this.contestada=false;
+		this.urlCategoria1=`SELECT DISTINCT ?mon ?monLabel ?esta_enLabel ?foto WHERE {
+					 ?mon wdt:P131* wd:Q54936.
+					 ?mon wdt:P31 wd:Q4989906.
+					 SERVICE wikibase:label { bd:serviceParam wikibase:language "es,ca,en". }
+					?mon wdt:P131 ?esta_en.
+					 ?mon wdt:P18 ?foto.
+
+					}
+					LIMIT 1000`;
+		this.dothings();
 	}
 
  dothings(){
 
- 	this._PeticionesService.getTipo1().subscribe(
+ 	this._PeticionesService.getTipo1(this.urlCategoria1).subscribe(
             result => {
                  
                 if(result.code != 200){
@@ -100,9 +111,9 @@ export class PreguntaComponent{
 		if(numb==this.number){
 			this.puntuacion+=100;
 			this.contestada=true;
-			//this.dothings();
-			//this.contestada=false;
-			//this.number=-1;
+			this.dothings();
+			this.contestada=false;
+			this.number=-1;
 		}else{
 			this.puntuacion-=11;
 		}

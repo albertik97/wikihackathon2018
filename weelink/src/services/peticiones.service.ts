@@ -8,21 +8,13 @@ import {Observable} from 'rxjs/Observable';
 export class PeticionesService{
 	public url:string;
 	constructor(private _http:Http){
-		this.url='https://query.wikidata.org/sparql?query= ';
-		var url2 =`SELECT DISTINCT ?mon ?monLabel ?esta_enLabel ?foto WHERE {
-					 ?mon wdt:P131* wd:Q54936.
-					 ?mon wdt:P31 wd:Q4989906.
-					 SERVICE wikibase:label { bd:serviceParam wikibase:language "es,ca,en". }
-					?mon wdt:P131 ?esta_en.
-					 ?mon wdt:P18 ?foto.
-
-					}
-					LIMIT 1000`;
-		this.url+=url2;
+		
 	}
 
-	getTipo1(){
-		
+	getTipo1(url){
+		this.url='https://query.wikidata.org/sparql?query=';
+		this.url+=url;
+		console.log(this.url);
 		return this._http.get(this.url).map(res=>res.json());
 	}
 }
