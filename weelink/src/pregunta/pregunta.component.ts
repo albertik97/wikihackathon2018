@@ -17,15 +17,18 @@ export class PreguntaComponent{
 		"¿A qué municipio pertenece esta bandera?",
 		"¿Dónde está hecha esta foto?",
 		"¿Qué municipio se encuentra en este lugar?",
-		"¿Cuantos habitantes tiene..."
+		"¿Cuantos habitantes tiene...",
+		"¿Cual de los siguientes fue..."
 
 	];
+	public yourplace = 'Q54936';
 	public categoriaSelected;
 	public pregunta = "quiz";
 	public correcta = "";
 	public acertada:string;
 	public url_imagen;
 	public p1;
+	public texto_nombre_poble;
 	public n1;
 	public p1_color;
 	public p2_color;
@@ -44,7 +47,9 @@ export class PreguntaComponent{
 	public urlCategoria1; //escudos
 	public urlCategoria2; //banderas
 	public urlCategoria3; //foto del poble
-	public urlCategoria4;
+	public urlCategoria4; //ubicacion en el mapa
+	public urlCategoria5; //habitantes
+	public urlCategoria6; //famous people
 	public contestada;
 	public vida;
 
@@ -53,6 +58,7 @@ export class PreguntaComponent{
 		this.url_imagen="";
 	}
 	ngOnInit(){
+		this.categoriaRandom();
 		this.vida=3;
 		this.p1_color="white";
 		this.p2_color="white";
@@ -61,8 +67,8 @@ export class PreguntaComponent{
 		this.number=-1;
 		this.puntuacion=0;
 		this.contestada=false;
-		this.urlCategoria1=`SELECT DISTINCT ?mon ?monLabel ?esta_enLabel ?foto WHERE {
-					 ?mon wdt:P131* wd:Q54936.
+		this.urlCategoria0=`SELECT DISTINCT ?mon ?monLabel ?esta_enLabel ?foto WHERE {
+					 ?mon wdt:P131* wd:`+this.yourplace+`.
 					 ?mon wdt:P31 wd:Q4989906.
 					 SERVICE wikibase:label { bd:serviceParam wikibase:language "es,ca,en". }
 					?mon wdt:P131 ?esta_en.
@@ -70,7 +76,70 @@ export class PreguntaComponent{
 
 					}
 					LIMIT 1000`;
-					this.categoriaSelected=1;
+		this.urlCategoria1=`
+			SELECT DISTINCT ?mon ?monLabel ?coordenadas ?foto WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "en, es, ca". }
+			?mon wdt:P131* wd:`+this.yourplace+`.
+			?mon wdt:P31 ?tipoDeNucleo.
+			FILTER(?tipoDeNucleo = wd:Q2074737 || ?tipoDeNucleo = wd:Q515)
+			OPTIONAL { ?mon wdt:P625 ?coordenadas. }
+			?mon wdt:P94 ?foto.
+			}
+			LIMIT 1000`;
+		this.urlCategoria2=`
+		SELECT DISTINCT ?mon ?monLabel ?coordenadas ?foto WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "en, es, ca". }
+			?mon wdt:P131* wd:`+this.yourplace+`.
+			?mon wdt:P31 ?tipoDeNucleo.
+			FILTER(?tipoDeNucleo = wd:Q2074737 || ?tipoDeNucleo = wd:Q515)
+			OPTIONAL { ?mon wdt:P625 ?coordenadas. }
+			?mon wdt:P41 ?foto.
+			}
+			LIMIT 1000
+		`;
+		this.urlCategoria3=`
+			SELECT DISTINCT ?mon ?monLabel ?coordenadas ?foto WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "en, es, ca". }
+			?mon wdt:P131* wd:`+this.yourplace+`.
+			?mon wdt:P31 ?tipoDeNucleo.
+			FILTER(?tipoDeNucleo = wd:Q2074737 || ?tipoDeNucleo = wd:Q515)
+			OPTIONAL { ?mon wdt:P625 ?coordenadas. }
+			?mon wdt:P18 ?foto.
+			}
+			LIMIT 1000
+		`;
+		this.urlCategoria4=`
+			SELECT DISTINCT ?mon ?monLabel ?coordenadas ?foto WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "en, es, ca". }
+			?mon wdt:P131* wd:`+this.yourplace+`.
+			?mon wdt:P31 ?tipoDeNucleo.
+			FILTER(?tipoDeNucleo = wd:Q2074737 || ?tipoDeNucleo = wd:Q515)
+			OPTIONAL { ?mon wdt:P625 ?coordenadas. }
+			?mon wdt:P242 ?foto.
+			}
+			LIMIT 1000
+		`;
+		this.urlCategoria5=`
+			SELECT DISTINCT ?poble ?pobleLabel ?coordenadas ?monLabel WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "en, es, ca". }
+			?poble wdt:P131* wd:`+this.yourplace+`.
+			?poble wdt:P31 ?tipoDeNucleo.
+			FILTER(?tipoDeNucleo = wd:Q2074737 || ?tipoDeNucleo = wd:Q515)
+			OPTIONAL { ?poble wdt:P625 ?coordenadas. }
+			?poble wdt:P1082 ?monLabel.
+			}
+			LIMIT 1000
+		`;
+		this.urlCategoria6=`
+			SELECT ?mon ?monLabel ?pobleLabel WHERE {
+			SERVICE wikibase:label { bd:serviceParam wikibase:language "es, en". }
+			?mon (wdt:P19/wdt:P131) wd:`+this.yourplace+`.
+			?mon ?trabajo ?poble.
+			FILTER((?trabajo = wdt:P106) || (?trabajo = wdt:P39))
+			}
+			LIMIT 1000
+		`;
+
 		this.dothings();
 
 	}
@@ -81,27 +150,32 @@ export class PreguntaComponent{
 		this.p2_color="white";
 		this.p3_color="white";
 		this.p4_color="white";
-	if(this.categoriaSelected==0){
-		this.urlShow = this.urlCategoria0;
-	}
-	else if(this.categoriaSelected==1){
-		this.urlShow = this.urlCategoria1;
-	}
-	else if(this.categoriaSelected==2){
-		this.urlShow = this.urlCategoria2;
-	}
-	else if(this.categoriaSelected==3){
-		this.urlShow = this.urlCategoria3;
-	}
-	else if(this.categoriaSelected==4){
-		this.urlShow = this.urlCategoria4;
-	}
-
+		if(this.categoriaSelected==0){
+			this.urlShow = this.urlCategoria0;
+		}
+		else if(this.categoriaSelected==1){
+			this.urlShow = this.urlCategoria1;
+		}
+		else if(this.categoriaSelected==2){
+			this.urlShow = this.urlCategoria2;
+		}
+		else if(this.categoriaSelected==3){
+			this.urlShow = this.urlCategoria3;
+		}
+		else if(this.categoriaSelected==4){
+			this.urlShow = this.urlCategoria4;
+		}
+		else if(this.categoriaSelected==5){
+			this.urlShow = this.urlCategoria5;
+		}
+		else if(this.categoriaSelected==6){
+			this.urlShow = this.urlCategoria6;
+		}
  	this._PeticionesService.getTipo1(this.urlShow).subscribe(
             result => {
 
                 if(result.code != 200){
-                    
+
                     var sitios = [];
                     this.number = 0;
                     this.number = Math.floor((Math.random() * result.results.bindings.length) + 1);
@@ -113,8 +187,14 @@ export class PreguntaComponent{
 				    var number4 = Math.floor((Math.random() * result.results.bindings.length) + 1);
 				    sitios.push(number4);
 
-				    this.url_imagen=result.results.bindings[this.number].foto.value;
-					sitios = this.shuffle(sitios);
+					if(this.categoriaSelected<5){
+											this.url_imagen=result.results.bindings[this.number].foto.value;
+											this.texto_nombre_poble='';
+										}
+										else{
+											this.url_imagen='';
+											this.texto_nombre_poble=result.results.bindings[this.number].pobleLabel.value+'?';
+										}					sitios = this.shuffle(sitios);
 				    this.p1=result.results.bindings[sitios[0]].monLabel.value;
 				    this.n1=sitios[0];
 				    this.p2=result.results.bindings[sitios[1]].monLabel.value;
@@ -124,7 +204,7 @@ export class PreguntaComponent{
 				    this.p4=result.results.bindings[sitios[3]].monLabel.value;
 				    this.n4=sitios[3];
                 }else{
-                   
+
                 }
 
             },
@@ -159,6 +239,8 @@ export class PreguntaComponent{
 		if(numb==this.number){
 			this.puntuacion+=100;
 			this.acertada="1";
+			this.categoriaRandom();
+			console.log(this.categoriaSelected);
 		}else{
 			this.vida-=1;
 			this.acertada="2";
@@ -170,8 +252,8 @@ export class PreguntaComponent{
 			console.log(this.categoriaSelected);
 			setTimeout(()=>{
 				this.dothings();},2000);
-			
-			
+
+
 
 	}
 
@@ -179,7 +261,7 @@ export class PreguntaComponent{
 
 		if(this.n1==this.number){
 			this.p1_color='#00C853';
-			
+
 		}else{
 			this.p1_color='#FF8A80';
 			console.log(this.p1_color);
@@ -187,25 +269,25 @@ export class PreguntaComponent{
 
 		if(this.n2==this.number){
 			this.p2_color='#00C853';
-			
+
 		}else{
 			this.p2_color='#FF8A80';
 		}
 
 		if(this.n3==this.number){
 			this.p3_color='#00C853';
-			
+
 		}else{
 			this.p3_color='#FF8A80';
 		}
 
 		if(this.n4==this.number){
 			this.p4_color='#00C853';
-			
+
 		}else{
 			this.p4_color='#FF8A80';
 		}
-			
+
 	}
 
 	getRandomInt(min, max) {
@@ -214,7 +296,7 @@ export class PreguntaComponent{
 
 	categoriaRandom()
 	{
-		this.categoriaSelected = this.getRandomInt(0, 4);
+		this.categoriaSelected = this.getRandomInt(0, 6);
 	}
 
 }
