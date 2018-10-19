@@ -76,6 +76,7 @@ export class PreguntaComponent{
 	}
 
  dothings(){
+ 		this.number=-1;
  		this.p1_color="white";
 		this.p2_color="white";
 		this.p3_color="white";
@@ -154,7 +155,7 @@ export class PreguntaComponent{
 	}
 
 	comprobar(numb,n){
-		this.comprobar2(numb,n);
+		this.comprobar2();
 		if(numb==this.number){
 			this.puntuacion+=100;
 			this.acertada="1";
@@ -165,25 +166,18 @@ export class PreguntaComponent{
 				window.location.href = '/home';
 		}
 			this.contestada=true;
-			this.categoriaRandom();
+			//this.categoriaRandom();
 			console.log(this.categoriaSelected);
-			this.dothings();
-			this.number=-1;
+			setTimeout(()=>{
+				this.dothings();},2000);
+			
+			
+
 	}
 
-	sleep(milliseconds) {
-	  var start = new Date().getTime();
-	  for (var i = 0; i < 1e7; i++) {
-	    if ((new Date().getTime() - start) > milliseconds){
-	      break;
-	    }
-	  }
-	}
+	comprobar2(){
 
-	comprobar2(n,num){
-		console.log(n);
-		console.log(num);
-		if(n==this.number&&num==1){
+		if(this.n1==this.number){
 			this.p1_color='green';
 			
 		}else{
@@ -191,21 +185,21 @@ export class PreguntaComponent{
 			console.log(this.p1_color);
 		}
 
-		if(n==this.number&&num==2){
+		if(this.n2==this.number){
 			this.p2_color='green';
 			
 		}else{
 			this.p2_color='red';
 		}
 
-		if(n==this.number&&num==3){
+		if(this.n3==this.number){
 			this.p3_color='green';
 			
 		}else{
 			this.p3_color='red';
 		}
 
-		if(n==this.number&&num==4){
+		if(this.n4==this.number){
 			this.p4_color='green';
 			
 		}else{
