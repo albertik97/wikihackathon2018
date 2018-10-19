@@ -22,6 +22,9 @@
 	transition: border  .25s;
 }
 
+#div-todo{
+	margin-bottom: 20px;
+}
 
 span{
 	font-weight: bold;
@@ -79,6 +82,10 @@ img
 
 
 	}
+
+	#div-todo{
+	margin-bottom: 10px;
+}
 
 
 }
