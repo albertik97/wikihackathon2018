@@ -30,6 +30,7 @@ export class PreguntaComponent{
 	}
 	ngOnInit(){
 		this.dothings();
+		this.number=-1;
 		this.puntuacion=0;
 		this.contestada=false;
 	}
@@ -99,9 +100,9 @@ export class PreguntaComponent{
 		if(numb==this.number){
 			this.puntuacion+=100;
 			this.contestada=true;
-			this.dothings();
-			this.contestada=false;
-			this.number=-1;
+			//this.dothings();
+			//this.contestada=false;
+			//this.number=-1;
 		}else{
 			this.puntuacion-=11;
 		}

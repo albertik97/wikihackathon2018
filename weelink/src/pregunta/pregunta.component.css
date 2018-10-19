@@ -3,14 +3,22 @@
 	padding-bottom: 10px; 
 	text-align: center;
 	border: 2px solid #90CAF9;
-	margin-left: 5%;
-	margin-right: 5%;
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: 4px;
+	margin: 1em auto 4px;
+	width: 50%;
+	cursor: pointer;
+	border-radius: .5em;
+
 }
 .pregunta:hover{
+	background-color: #90CAF9;
+	color: #fff;
 	
-	transition: margin-left 3% 1s;
-	transition: margin-right 3% 1s;
+	transition: background-color  1s;
+	transition: color  .25s;
+	
 }
 
 h3{

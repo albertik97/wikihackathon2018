@@ -122,11 +122,13 @@ h3{
 
 .card
 {
-	margin-top: 1em;
+	width: 80%;
 	background-color: #E0E0E0;
 	color: #424242;
 	border: 1px solid #BDBDBD;
 	border-radius: .25em;
+	margin: 1em auto 0;
+	padding: 1em;
 }
 
 .card-info > h2
@@ -141,4 +143,28 @@ h3{
 .content button:hover{
 	background: #2962FF;
 	cursor: pointer;
+}
+
+@media all and (min-width: 600px)
+{
+	h3
+	{
+		font-size: 1.5rem;
+	}
+	h2
+	{
+		font-size: 2rem;
+	}
+	.changeUbi-container > button > i
+	{
+		font-size: 2em;
+	}
+	.content > button
+	{
+		font-size: 1.5rem;
+		padding: 1em 3em;
+	}
+
+
+
 }
